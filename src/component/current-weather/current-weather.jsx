@@ -1,8 +1,10 @@
 import "./current-weather.css"
 
 const CurrentWeather = ({data}) => {
+    const weatherType = data.weather[0].main.toLowerCase();
+
     return (
-        <div className="weather">
+        <div className= {`weather ${weatherType}`}>
             <div className="top">
                 <div>
                     <p className="city">{data.city}</p>
