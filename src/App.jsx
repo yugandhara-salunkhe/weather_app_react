@@ -1,9 +1,12 @@
 import './App.css';
-import CurrentWeather from './component/current-weather/current-weather';
-import Forecast from './component/forecast/forecast';
 import Search from './component/search/search';
 import { WEATHER_API_URL, WEATHER_API_KEY } from './apis';
 import { useState } from 'react';
+import { lazy,Suspense } from 'react';
+
+const CurrentWeather = lazy(() => import ('./component/current-weather/current-weather'));
+const Forecast = lazy (() => import ('./component/forecast/forecast'));
+
 
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -33,8 +36,11 @@ function App() {
 
     <div className='container'>
       <Search onSearchChange={handleOnSearchChange} />
-      {currentWeather && <CurrentWeather data={currentWeather} />}
-      {forecast && <Forecast data={forecast} />}
+
+      <Suspense fallback={<div>Loading weather...</div>}>
+        {currentWeather && <CurrentWeather data={currentWeather} />}
+        {forecast && <Forecast data={forecast} />}
+      </Suspense>
 
     </div>
 
