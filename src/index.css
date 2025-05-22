@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
    margin: 0;
-  background-image: url('../public/images/blue-sky.jpg');
+  background-image: url("../public/images/bluesky.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
